@@ -1,0 +1,32 @@
+{
+  "name": "kenat-cli",
+  "version": "1.0.0",
+  "description": "A CLI for the Kenat Ethopian calendar library",
+  "main": "src/cli.js",
+  "type": "module",
+  "bin": {
+    "kenat": "src/cli.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MelakuDemeke/kenat-cli.git"
+  },
+  "keywords": [
+    "kenat",
+    "ethiopian",
+    "calendar"
+  ],
+  "author": "Melaku Demeke",
+  "license": "MIT",
+  "dependencies": {
+    "kenat": "^2.1.1",
+    "yargs": "^17.7.2"
+  },
+  "bugs": {
+    "url": "https://github.com/MelakuDemeke/kenat-cli/issues"
+  },
+  "homepage": "https://github.com/MelakuDemeke/kenat-cli#readme"
+}
