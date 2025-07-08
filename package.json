@@ -22,6 +22,7 @@
   "author": "Melaku Demeke",
   "license": "MIT",
   "dependencies": {
+    "gradient-string": "^3.0.0",
     "kenat": "^2.1.1",
     "yargs": "^17.7.2"
   },
