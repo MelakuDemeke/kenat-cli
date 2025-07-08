@@ -5,32 +5,29 @@ import { hideBin } from 'yargs/helpers';
 import Kenat from 'kenat';
 import gradient from 'gradient-string';
 import figlet from 'figlet';
-import { promisify } from 'util';
 
-// Promisify figlet to use it with async/await
-const figletPromise = promisify(figlet.text);
-
-// A new gradient for our banner
 const bannerGradient = gradient('cyan', 'pink');
 
-/**
- * Creates and displays the CLI banner.
- */
-const showBanner = async () => {
-    try {
-        const banner = await figletPromise('Kenat - CLI', {
+const showBanner = () => {
+    return new Promise((resolve, reject) => {
+        figlet.text('Kenat / ቀናት  - CLI', {
             font: 'Standard',
             horizontalLayout: 'default',
             verticalLayout: 'default',
             width: 80,
             whitespaceBreak: true,
+        }, (err, data) => {
+            if (err) {
+                console.log('Something went wrong...');
+                console.dir(err);
+                reject(err);
+                return;
+            }
+            console.log(bannerGradient(data));
+            resolve();
         });
-        console.log(bannerGradient(banner));
-    } catch (err) {
-        console.error('Failed to generate banner:', err);
-    }
+    });
 };
-
 
 const run = async () => {
     await showBanner();
@@ -58,5 +55,4 @@ const run = async () => {
         .argv;
 };
 
-// Run the main function
 run();
