@@ -10,7 +10,7 @@ const bannerGradient = gradient('cyan', 'pink');
 
 const showBanner = () => {
     return new Promise((resolve, reject) => {
-        figlet.text('Kenat / ቀናት  - CLI', {
+        figlet.text('Kenat - CLI', {
             font: 'Standard',
             horizontalLayout: 'default',
             verticalLayout: 'default',
