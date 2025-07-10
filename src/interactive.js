@@ -4,6 +4,7 @@ import { handleConvertCommand } from './commands/convert.js';
 import { handleHolidayCommand } from './commands/holiday.js';
 import { handleCalendarCommand } from './commands/calendar.js';
 import { handleBahireHasabCommand } from './commands/bahirehasab.js';
+import { handleHelpCommand } from './commands/help.js';
 import { showBanner } from './utils/banner.js';
 import gradient from 'gradient-string';
 
@@ -67,7 +68,7 @@ export const startInteractiveMode = async () => {
                 handleBahireHasabCommand(argv);
                 break;
             case 'help':
-                console.log('\nAvailable commands: today, convert, holiday, calendar, bahirehasab, exit');
+                handleHelpCommand(argv);
                 break;
             case 'exit':
                 onCancel();

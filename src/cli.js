@@ -10,6 +10,7 @@ import { handleConvertCommand } from './commands/convert.js';
 import { handleHolidayCommand } from './commands/holiday.js';
 import { handleCalendarCommand } from './commands/calendar.js';
 import { handleBahireHasabCommand } from './commands/bahirehasab.js';
+import { handleHelpCommand } from './commands/help.js';
 import { startInteractiveMode } from './interactive.js';
 
 const main = () => {
@@ -66,6 +67,17 @@ const main = () => {
                         type: 'number',
                     }),
                 handler: handleBahireHasabCommand,
+            })
+            .command({
+                command: 'help [command]',
+                aliases: ['h'],
+                describe: 'Display help for a command',
+                builder: (yargs) => yargs
+                    .positional('command', {
+                        describe: 'The command to get help for',
+                        type: 'string'
+                    }),
+                handler: handleHelpCommand
             })
             .demandCommand(1, 'A command is required to run in non-interactive mode. Type "kenat" to enter interactive mode.')
             .help()
