@@ -1,7 +1,7 @@
 import Kenat from 'kenat';
 import gradient from 'gradient-string';
 
-const titleGradient = gradient('yellow', 'green');
+const titleGradient = gradient(['yellow', 'green']);
 
 export const handleTodayCommand = () => {
     const today = new Kenat();
