@@ -25,6 +25,7 @@
     "figlet": "^1.8.1",
     "gradient-string": "^3.0.0",
     "kenat": "^2.1.1",
+    "prompts": "^2.4.2",
     "yargs": "^17.7.2"
   },
   "bugs": {
