@@ -10,6 +10,7 @@ import { handleTodayCommand } from './commands/today.js';
 import { handleConvertCommand } from './commands/convert.js';
 import { handleHolidayCommand } from './commands/holiday.js';
 import { handleCalendarCommand } from './commands/calendar.js';
+import { handleBahireHasabCommand } from './commands/bahirehasab.js';
 
 const run = async () => {
     await showBanner();
@@ -87,6 +88,18 @@ const run = async () => {
             },
             handleCalendarCommand
         )
+        .command(
+        'bahirehasab [year]',
+        'Calculates and displays Bahire Hasab for a given Ethiopian year',
+        (yargs) => {
+            return yargs
+                .positional('year', {
+                    describe: 'The Ethiopian year to calculate for (defaults to current year)',
+                    type: 'number'
+                });
+        },
+        handleBahireHasabCommand
+    )
         .demandCommand(1, 'You need to enter a command.')
         .help()
         .alias('h', 'help')
