@@ -9,25 +9,34 @@ import { showBanner } from './utils/banner.js';
 import gradient from 'gradient-string';
 
 const parseCommand = (input) => {
-    const parts = input.trim().split(' ');
-    const command = parts[0];
-    const argv = { _: [command] };
+    const parts = input.trim().split(/\s+/);
+    const command = parts[0] || '';
+    const argv = { _: [...parts] };
+
+    if (command === 'help' && parts.length > 1) {
+        argv.command = parts[1];
+    }
+
+    if (command === 'convert' && parts.length > 1) {
+        argv.date = parts[1];
+    }
+    if (command === 'bahirehasab' && parts.length > 1) {
+        argv.year = parts[1];
+    }
+
     for (let i = 1; i < parts.length; i++) {
         if (parts[i].startsWith('--')) {
             const key = parts[i].substring(2);
-            argv[key] = parts[i + 1] || true;
-        } else if (parts[i].startsWith('-')) {
+            argv[key] = (parts[i + 1] && !parts[i + 1].startsWith('-')) ? parts[i + 1] : true;
+        } else if (parts[i].startsWith('-') && !/^\d+$/.test(parts[i].substring(1))) {
             const key = parts[i].substring(1);
-            argv[key] = parts[i + 1] || true;
-        } else {
-            if (!parts[i - 1]?.startsWith('-')) {
-                if (!argv.date && command === 'convert') argv.date = parts[i];
-                if (!argv.year && (command === 'calendar' || command === 'bahirehasab')) argv.year = parts[i];
-            }
+            argv[key] = (parts[i + 1] && !parts[i + 1].startsWith('-')) ? parts[i + 1] : true;
         }
     }
+
     return { command, argv };
 };
+
 
 export const startInteractiveMode = async () => {
     await showBanner();
@@ -71,7 +80,7 @@ export const startInteractiveMode = async () => {
                 handleHelpCommand(argv);
                 break;
             case 'exit':
-                onCancel();
+                onCancel(); // Use the same exit function for a clean departure
                 return;
             default:
                 console.log(gradient('orange', 'red')(`Unknown command: "${command}"`));
