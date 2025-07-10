@@ -9,6 +9,7 @@ import { showBanner } from './utils/banner.js';
 import { handleTodayCommand } from './commands/today.js';
 import { handleConvertCommand } from './commands/convert.js';
 import { handleHolidayCommand } from './commands/holiday.js';
+import { handleCalendarCommand } from './commands/calendar.js';
 
 const run = async () => {
     await showBanner();
@@ -67,6 +68,24 @@ const run = async () => {
                     })
             },
             handleHolidayCommand
+        )
+        .command(
+            'calendar',
+            'Display a visual calendar for a month or year',
+            (yargs) => {
+                return yargs
+                    .option('year', {
+                        alias: 'y',
+                        type: 'number',
+                        description: 'The Ethiopian year for the calendar'
+                    })
+                    .option('month', {
+                        alias: 'm',
+                        type: 'number',
+                        description: 'The Ethiopian month for the calendar (1-13)'
+                    })
+            },
+            handleCalendarCommand
         )
         .demandCommand(1, 'You need to enter a command.')
         .help()
