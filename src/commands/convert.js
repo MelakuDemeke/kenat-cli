@@ -2,8 +2,8 @@ import Kenat from 'kenat';
 import prompts from 'prompts';
 import gradient from 'gradient-string';
 
-const titleGradient = gradient('yellow', 'green');
-const errorGradient = gradient('orange', 'red');
+const titleGradient = gradient(['yellow', 'green']);
+const errorGradient = gradient(['orange', 'red']);
 
 const interactiveConvert = async () => {
     const response = await prompts([
