@@ -1,7 +1,7 @@
 import gradient from 'gradient-string';
 import figlet from 'figlet';
 
-const bannerGradient = gradient('cyan', 'pink');
+const bannerGradient = gradient(['cyan', 'pink']);
 
 export const showBanner = () => {
     return new Promise((resolve, reject) => {
