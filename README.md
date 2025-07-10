@@ -1,6 +1,6 @@
 # Kenat-CLI / ቀናት
 
-![banner](assets/img/cli.png)
+![banner](assets/img/kenat-cli-banner.png)
 
 **Kenat-CLI** is a powerful, beautiful, and user-friendly command-line interface for the [Kenat Ethiopian calendar library](https://github.com/MelakuDemeke/kenat). It brings comprehensive date conversion, holiday information, liturgical calculations, and visual calendars right to your terminal.
 
