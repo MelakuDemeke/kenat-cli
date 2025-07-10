@@ -4,7 +4,7 @@ import Kenat, { MonthGrid } from 'kenat';
 import gradient from 'gradient-string';
 import chalk from 'chalk';
 
-const titleGradient = gradient('cyan', 'purple');
+const titleGradient = gradient(['cyan', 'purple']);
 
 const displayMonth = (year, month) => {
     const grid = MonthGrid.create({ year, month, holidayFilter: ['public'] });
