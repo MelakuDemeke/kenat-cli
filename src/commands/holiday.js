@@ -3,8 +3,8 @@ import prompts from 'prompts';
 import gradient from 'gradient-string';
 import Table from 'cli-table3';
 
-const titleGradient = gradient('cyan', 'purple');
-const errorGradient = gradient('orange', 'red');
+const titleGradient = gradient(['cyan', 'purple']);
+const errorGradient = gradient(['orange', 'red']);
 
 // A helper function to format and display holidays in a table
 const displayHolidays = (holidays, title) => {
