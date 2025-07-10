@@ -3,7 +3,7 @@ import gradient from 'gradient-string';
 import chalk from 'chalk';
 import Table from 'cli-table3';
 
-const titleGradient = gradient('cyan', 'purple');
+const titleGradient = gradient(['cyan', 'purple']);
 
 const displayBahireHasab = (data) => {
     console.log(titleGradient(`\nBahire Hasab for Ethiopian Year ${data.ameteAlem - 5500}`));
