@@ -11,7 +11,6 @@ const parseCommand = (input) => {
     const parts = input.trim().split(' ');
     const command = parts[0];
     const argv = { _: [command] };
-
     for (let i = 1; i < parts.length; i++) {
         if (parts[i].startsWith('--')) {
             const key = parts[i].substring(2);
@@ -26,34 +25,28 @@ const parseCommand = (input) => {
             }
         }
     }
-
     return { command, argv };
 };
-
-let ctrlc_count = 0;
 
 export const startInteractiveMode = async () => {
     await showBanner();
     console.log(gradient.pastel('Welcome to Kenat Interactive Mode! Type "help" for commands or "exit" to leave.'));
 
+    const onCancel = () => {
+        console.log(gradient.passion('\nExiting Kenat. Goodbye!'));
+        process.exit(0);
+    };
+
     while (true) {
-        ctrlc_count = 0;
         const response = await prompts({
             type: 'text',
             name: 'input',
             message: 'kenat >',
-            onState: (state) => {
-                if (state.aborted) {
-                    ctrlc_count++;
-                    if (ctrlc_count >= 2) {
-                        process.exit(0);
-                    }
-                    console.log(gradient.passion('(Ctrl+C again to exit)'));
-                }
-            }
-        });
+        }, { onCancel });
 
-        if (!response.input) continue;
+        if (!response.input) {
+            continue;
+        }
 
         const { command, argv } = parseCommand(response.input);
 
@@ -71,12 +64,13 @@ export const startInteractiveMode = async () => {
                 handleCalendarCommand(argv);
                 break;
             case 'bahirehasab':
-                handleBahireHasabCommand(argv)
+                handleBahireHasabCommand(argv);
                 break;
             case 'help':
-                console.log('Available commands: today, convert, holiday, calendar, bahirehasab, exit');
+                console.log('\nAvailable commands: today, convert, holiday, calendar, bahirehasab, exit');
                 break;
             case 'exit':
+                onCancel();
                 return;
             default:
                 console.log(gradient('orange', 'red')(`Unknown command: "${command}"`));
