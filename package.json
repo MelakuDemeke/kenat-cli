@@ -1,6 +1,6 @@
 {
   "name": "kenat-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A CLI for the Kenat Ethopian calendar library",
   "main": "src/cli.js",
   "type": "module",
